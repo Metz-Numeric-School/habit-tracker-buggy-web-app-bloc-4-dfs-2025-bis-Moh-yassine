@@ -1,0 +1,76 @@
+<div class="bg-green-100 min-h-screen flex items-center justify-center p-4">
+  <div class="max-w-lg w-full bg-beige-50 p-8 rounded-lg shadow-lg">
+    <h2 class="text-3xl font-semibold text-green-800 mb-6">Création de Ticket</h2>
+
+    <form (ngSubmit)="createTicket()">
+      <div class="mb-4">
+        <label for="created_by" class="block text-green-700 font-medium mb-2">Créé par</label>
+        <input
+          id="created_by"
+          name="created_by"
+          [(ngModel)]="ticketData.created_by"
+          class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-300"
+          placeholder="Nom du créateur"
+          required
+          aria-describedby="created_by_help"
+        />
+        <small id="created_by_help" class="text-green-500">Entrez votre nom complet.</small>
+      </div>
+
+      <div class="mb-4">
+        <label for="description" class="block text-green-700 font-medium mb-2">Description du problème</label>
+        <textarea
+          id="description"
+          name="description"
+          rows="4"
+          [(ngModel)]="ticketData.description"
+          class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-300"
+          placeholder="Décrivez le problème"
+          required
+          aria-describedby="description_help"
+        ></textarea>
+        <small id="description_help" class="text-green-500">Soyez aussi précis que possible.</small>
+      </div>
+
+      <div class="mb-4">
+        <label for="priorite" class="block text-green-700 font-medium mb-2">Priorité</label>
+        <select
+          id="priorite"
+          name="priorite"
+          [(ngModel)]="ticketData.priorite"
+          class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-300"
+        >
+          <option value="Urgent">Urgent</option>
+          <option value="Élevé">Élevé</option>
+          <option value="Moyen">Moyen</option>
+          <option value="Faible">Faible</option>
+        </select>
+      </div>
+
+      <div class="mb-4">
+        <label for="assigne" class="block text-green-700 font-medium mb-2">Assigner à un Employé</label>
+        <select
+          id="assigne"
+          name="assigne"
+          [(ngModel)]="ticketData.assigne"
+          class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-300"
+          required
+        >
+          <option value="">Choisissez un employé</option>
+          <option *ngFor="let employe of employees" [value]="employe.username">
+            {{ employe.username }}
+          </option>
+        </select>
+      </div>
+
+      <div class="mt-6">
+        <button
+          type="submit"
+          class="w-full bg-green-500 text-white font-bold py-2 rounded-md hover:bg-green-600 transition duration-300"
+        >
+          Créer le Ticket
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

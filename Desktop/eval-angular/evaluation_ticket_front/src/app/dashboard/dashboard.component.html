@@ -1,0 +1,36 @@
+<div class="container mx-auto p-6">
+
+    
+    <div class="mb-8">
+        <table class="min-w-full bg-beige-50 border border-green-200">
+            <thead class="bg-green-100">
+                <tr>
+                    <th class="py-2 px-4 border-b text-green-800">Créé par</th>
+                    <th class="py-2 px-4 border-b text-green-800">Description</th>
+                    <th class="py-2 px-4 border-b text-green-800">Priorité</th>
+                    <th class="py-2 px-4 border-b text-green-800">Assigné à</th>
+                    <th class="py-2 px-4 border-b text-green-800">Date de création</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (ticket of tickets; track $index) {
+                    <tr class="hover:bg-green-50">
+                        <td class="py-2 px-4 border-b text-green-700">{{ ticket.created_by }}</td>
+                        <td class="py-2 px-4 border-b text-green-700">{{ ticket.description }}</td>
+                        <td class="py-2 px-4 border-b text-green-700">{{ ticket.priority }}</td>
+                        <td class="py-2 px-4 border-b text-green-700">{{ ticket.assigned_to }}</td>
+                        <td class="py-2 px-4 border-b text-green-700">{{ ticket.created_at }}</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        <ul class="list-disc pl-6 text-green-700">
+            @for (employee of employees; track $index) {
+                <li>{{ employee.username }}</li>
+            }
+        </ul>
+    </div>
+</div>
