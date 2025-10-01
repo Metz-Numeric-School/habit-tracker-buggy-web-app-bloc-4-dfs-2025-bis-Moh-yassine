@@ -1,0 +1,33 @@
+<?php
+
+require 'vendor/autoload.php';
+require 'config/bootstrap.php';
+
+use Mns\Buggy\Core\MySqlConnector;
+
+$pdo = MySqlConnector::getServerConnection();
+
+// Chemin absolu vers le fichier SQL
+$sqlFile = realpath(__DIR__ . '/../database.sql');
+
+if (!$sqlFile || !file_exists($sqlFile)) {
+    die("Fichier SQL introuvable !");
+}
+
+// Lit le contenu du fichier
+$sql = file_get_contents($sqlFile);
+
+try {
+    // Si le fichier contient plusieurs instructions séparées par ;
+    $statements = array_filter(array_map('trim', explode(';', $sql)));
+
+    foreach ($statements as $statement) {
+        if ($statement) {
+            $pdo->exec($statement);
+        }
+    }
+
+    echo "Base et tables créées avec succès !\n";
+} catch (\PDOException $e) {
+    echo "Erreur lors de l'exécution du script SQL : " . $e->getMessage() . "\n";
+}

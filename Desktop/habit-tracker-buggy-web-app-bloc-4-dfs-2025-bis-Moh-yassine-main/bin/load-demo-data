@@ -1,0 +1,39 @@
+<?php
+require 'vendor/autoload.php';
+require 'config/bootstrap.php';
+
+use Mns\Buggy\Core\MySqlConnector;
+
+echo "Chargement des données de démonstration (LAB only)...\n";
+
+// Chemin vers le fichier SQL
+$sqlFile = realpath(__DIR__ . '/../demo_data.sql');
+
+if (!$sqlFile || !file_exists($sqlFile)) {
+    echo "Fichier demo_data.sql introuvable : $sqlFile\n";
+    exit(1);
+}
+
+// Récupère la connexion PDO (doit être connecté à la DB habit_tracker)
+$pdo = MySqlConnector::getInstance()->getConnection();
+
+// Lire le fichier
+$sql = file_get_contents($sqlFile);
+
+// Séparer les instructions de manière robuste : on split sur ; suivi d'un saut de ligne ou fin de fichier
+$statements = preg_split('/;\\s*\\n/', $sql);
+
+// Exécuter les statements
+foreach ($statements as $statement) {
+    $statement = trim($statement);
+    if ($statement === '') continue;
+
+    try {
+        $pdo->exec($statement);
+    } catch (\PDOException $e) {
+        // Affiche l'erreur mais continue (utile en cas d'INSERT déjà présent)
+        echo "Erreur sur statement : " . substr($statement, 0, 80) . "... => " . $e->getMessage() . "\n";
+    }
+}
+
+echo "Import demo_data.sql terminé.\n";

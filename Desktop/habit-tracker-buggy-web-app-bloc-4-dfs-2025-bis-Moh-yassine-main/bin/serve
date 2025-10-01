@@ -1,0 +1,15 @@
+<?php
+
+$port = 85;
+$host = "localhost";
+
+// Start the server with other port
+$connexion = @fsockopen($host, $port);
+while(is_resource($connexion))
+{
+    $port ++;
+    $connexion = @fsockopen($host, $port);
+}
+
+print("Lancement du server ...\n");
+exec(sprintf("php -S %s:%d -t ./public", $host, $port));
