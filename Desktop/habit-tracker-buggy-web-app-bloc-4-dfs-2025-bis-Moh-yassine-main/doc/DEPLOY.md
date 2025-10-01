@@ -108,6 +108,12 @@ DB_DATABASE=habit_tracker
 DB_USERNAME=habit_user
 DB_PASSWORD=root
 
+// http://localhost:8000/
+DB_HOST=localhost
+DB_PORT=3306
+DB_DATABASE=habit_tracker
+DB_USERNAME=root
+DB_PASSWORD=
 
 # Sécuriser le fichier
 chmod 644 .env

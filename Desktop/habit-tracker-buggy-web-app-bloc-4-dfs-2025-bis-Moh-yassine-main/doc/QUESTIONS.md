@@ -229,3 +229,4 @@ Ligne de commande :
 ```bash
 openssl s_client -connect exemple.com:443
 ```
+
