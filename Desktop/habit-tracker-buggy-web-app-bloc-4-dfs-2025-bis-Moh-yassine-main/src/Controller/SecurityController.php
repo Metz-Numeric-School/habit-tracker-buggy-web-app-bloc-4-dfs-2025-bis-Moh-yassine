@@ -34,7 +34,7 @@ class SecurityController extends AbstractController
     
                     $_SESSION['user'] = [
                         'id' => $user->getId(),
-                        'username' => $user->getFirstname(),
+                        'firstname' => $user->getFirstname(),
                     ];
 
                     if($user->getIsadmin()) {
