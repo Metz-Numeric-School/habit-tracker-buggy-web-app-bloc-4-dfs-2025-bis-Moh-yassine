@@ -39,6 +39,9 @@ class RegisterController extends AbstractController
                 // Par défaut l'utilisateur n'est pas admin
                 $user['isadmin'] = 0;
 
+                // On hash le mot de passe avant de le sauvegarder
+                $user['password'] = password_hash($user['password'], PASSWORD_DEFAULT);
+
                 // On persite les informations en BDD
                 $id = $this->userRepository->insert($user);
 
@@ -49,7 +52,7 @@ class RegisterController extends AbstractController
                 ];
 
                 // On redirige vers son dashboard
-                header("Location: /user/ticket");
+                header("Location: /dashboard");
                 exit;
             }
         }

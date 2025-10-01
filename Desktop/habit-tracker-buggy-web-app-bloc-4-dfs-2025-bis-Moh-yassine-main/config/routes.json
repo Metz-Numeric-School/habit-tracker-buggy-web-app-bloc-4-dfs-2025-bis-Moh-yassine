@@ -28,12 +28,14 @@
     {
         "path": "/admin/user",
         "controller": "App\\Controller\\Admin\\UserController",
-        "action": "index"
+        "action": "index",
+        "guard": "App\\Guard\\AdminGuard"
     },
     {
         "path": "/admin/user/new",
         "controller": "App\\Controller\\Admin\\UserController",
-        "action": "new"
+        "action": "new",
+        "guard": "App\\Guard\\AdminGuard"
     },
     {
         "path": "/dashboard",
@@ -50,6 +52,11 @@
         "path": "/habits/create",
         "controller": "App\\Controller\\Member\\HabitsController",
         "action": "new"
+    },
+    {
+        "path": "/habit/toggle",
+        "controller": "App\\Controller\\Member\\HabitsController",
+        "action": "toggle"
     },
     {
         "path": "/api/habits",

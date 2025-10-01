@@ -19,7 +19,7 @@ class SecurityController extends AbstractController
 
         if(!empty($_SESSION['user']))
         {
-            $_SESSION['admin'] ? header('Location: /admin/dashboard') : header('Location: /user/dashboard'); die;
+            $_SESSION['admin'] ? header('Location: /admin/dashboard') : header('Location: /dashboard'); die;
         }
 
         if(!empty($_POST)) {
@@ -29,8 +29,8 @@ class SecurityController extends AbstractController
             $user = $this->userRepository->findByEmail($username);
 
             if($user) {
-                // On vérifie le mot de passe
-                if($password == $user->getPassword()) {
+                // On vérifie le mot de passe avec password_verify
+                if(password_verify($password, $user->getPassword())) {
     
                     $_SESSION['user'] = [
                         'id' => $user->getId(),

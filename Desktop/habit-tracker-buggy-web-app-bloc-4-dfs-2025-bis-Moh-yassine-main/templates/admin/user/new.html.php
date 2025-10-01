@@ -14,7 +14,7 @@
         <div class="col-12 col-md-6 col-lg-4">
             <?php if (isset($error)): ?>
                 <div class="alert alert-danger" role="alert">
-                    <?= $error ?>
+                    <?= htmlspecialchars($error) ?>
                 </div>
             <?php endif; ?>
 

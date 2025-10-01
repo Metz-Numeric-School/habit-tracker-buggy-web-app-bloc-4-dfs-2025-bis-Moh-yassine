@@ -20,13 +20,13 @@ CREATE TABLE IF NOT EXISTS mns_user (
   UNIQUE KEY email (email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Ajout d'un utilisateur admin
+-- Ajout d'un utilisateur admin (mot de passe : azertyuiop)
 INSERT INTO mns_user (firstname, lastname, email, password, isadmin) VALUES
-('Admin', 'HT', 'admin@ht-buggy-wapp.fr', 'azertyuiop', 1);
+('Admin', 'HT', 'admin@ht-buggy-wapp.fr', '$2y$12$YfJZyto/tpMIIFPxgjxzFOWJj51Imc0IEK4w1dLR.ZZ59bWLDY9rK', 1);
 
--- Ajout d'un utilisateur standard
+-- Ajout d'un utilisateur standard (mot de passe : azertyuiop)
 INSERT INTO mns_user (firstname, lastname, email, password, isadmin) VALUES
-('User', 'HT', 'user@ht-buggy-wapp.fr', 'azertyuiop', 0);
+('User', 'HT', 'user@ht-buggy-wapp.fr', '$2y$12$YfJZyto/tpMIIFPxgjxzFOWJj51Imc0IEK4w1dLR.ZZ59bWLDY9rK', 0);
 
 -- Table des habitudes
 CREATE TABLE habits (

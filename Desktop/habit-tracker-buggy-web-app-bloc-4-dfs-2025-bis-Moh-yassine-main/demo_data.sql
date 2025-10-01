@@ -6,9 +6,9 @@
 USE habit_tracker;
 
 -- Insert demo user (id fixe pour cohérence)
--- Note: password is plain text for demo only; in real app use password_hash()
+-- Note: mot de passe hashé avec password_hash() - mot de passe : demo1234
 INSERT INTO mns_user (id, firstname, lastname, email, password, isadmin, created_at)
-VALUES (1000, 'Demo', 'User', 'demo@local.lab', 'demo1234', 0, NOW());
+VALUES (1000, 'Demo', 'User', 'demo@local.lab', '$2y$12$FBBphmO53ciJcLvf.xkPnuaQ17HPu1l1Oy49hkhZDBUvWpsZDZbxG', 0, NOW());
 
 -- Habits for demo user
 -- We set explicit ids so we can reference them easily in habit_logs
